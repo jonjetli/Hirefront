@@ -1,0 +1,46 @@
+{% extends 'base2.html' %}
+{% block head_views %}
+    <title>Perfil {{ typeUser }} </title>
+    <script type="text/javascript" src="{{ STATIC_URL }}swfobject.js"></script>
+    <script type="text/javascript">
+        var flashvars = {};
+        var params = {
+        };
+        var attributes = {};
+        params.wmode = "transparent";
+        attributes.id = "myId";
+        swfobject.embedSWF("{{ STATIC_URL }}Test1.swf",
+                "myAlternativeContent", "250", "200", "9.0.0", false, flashvars,
+                params, attributes);
+        swfobject.embedSWF("{{ STATIC_URL }}Test2.swf",
+                "myAlternativeContent2", "250", "200", "9.0.0", false, flashvars,
+                params, attributes);
+
+    </script>
+{% endblock head_views %}
+{% block contenido %}
+
+
+{% endblock contenido %}
+{% block flash %}
+    {% if typeUser == 'Interviewed' %}
+        <div class="span9 flash">
+            <div class="span8 offset7">
+                <div id="myAlternativeContent" style="border: 3px solid #808080; width: 250px; height: 150px">
+                    <a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if typeUser == 'Enterprise' %}
+        <div id="myAlternativeContent2">
+            <a href="http://www.adobe.com/go/getflashplayer">
+                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+            </a>
+        </div><br>
+        <input class="input-medium" type="text"> ASK 1 &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-inverse">Send</button>
+    {% endif %}
+{% endblock flash %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block contenido %}
+    <br><br><br><br>
+    <form enctype="multipart/form-data" method="POST" >{% csrf_token %}
+    <div id="containerJoin" class="container">
+            <div class="span9 offset2" >
+                <div style="float: left;">
+                    <label class="control-label"> Full Name </label>
+                </div>
+                <div style="float: left; padding-left: 1%;">
+                    <input class="input-large" name="fullname" type="text" placeholder="Full Name">
+                </div>
+                <div class="span4 offset1">
+                    <div style="float: left;">
+                        <label>Email</label>
+                    </div>
+                    <div>
+                        <input class="input-large" name="email" type="email" placeholder="Email">
+                    </div>
+                </div>
+            </div>
+
+        <br><br><br>
+        <div class="span10" style="margin-left: 24.4%;">
+            <div style="float: left;>
+                <label class="control-label"> ID </label>
+            </div>
+            <div style="float: left; padding-left: 1%;">
+                <input name="ID" class="input-large" type="text" placeholder="ID">
+            </div>
+            <div class="span6">
+                <div style="float: left; margin-left: 14.8%">
+                    <label> Cellphone</label>
+                </div>
+                <div style="float: left; padding-left: 1%;">
+                    <input name="cellphone" class="input-large" type="tel" placeholder="Cellphone">
+                </div>
+            </div>
+        </div>
+        <br><br><br><br>
+            <div class="row-fluid">
+                <div class="span7 offset3">
+                    <input name="cv" type="file"></input>
+                </div>
+                <div class="span7">
+
+                </div>
+                <div class="span7 offset3">
+                    <button type="submit" class="btn btn-inverse">Create</button>
+                    <a href="/" class="btn btn-inverse">Back</a>
+                </div>
+            </div>
+    </div>
+    </form>
+    <div class="span12">{{ result }}</div>
+{% endblock contenido %}

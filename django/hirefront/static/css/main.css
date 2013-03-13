@@ -1,0 +1,36 @@
+body{
+    text-align: center;
+    font-size: 16px;
+}
+
+.container_header{
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container_header2{
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container_viewEnterprise{
+    margin-top: 2%;
+}
+#cvPDF{
+    border: 2px solid #000000;
+    float:left;
+    height: 600px;
+    margin-top: 9%;
+    display: ruby;
+}
+#whiteboardEnterprise{
+    margin-left: 40%;
+}
+
+.flash{
+    margin-top: 27%;
+}
+#myAlternativeContent{
+    border: 2px solid #808080;
+}

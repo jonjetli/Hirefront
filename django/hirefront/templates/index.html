@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <br><br><br><br>
+    <form method="POST">{% csrf_token %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="row-fluid">
+                <div class="span2" style="font-size:16px; padding: 0 10px 0 10px;margin-left:27.5%;text-align: left; border-top: 1px solid #000000; border-top-left-radius: 0.5em; border-left: 1px solid #000000;border-right: 1px solid #000000;border-top-right-radius: 0.5em;">
+                    Login &nbsp; Interviewed
+                </div>
+                <div class="span2 offset2" style="font-size:16px; padding: 0 10px 0 10px;text-align: left; border-top: 1px solid #000000; border-top-left-radius: 0.5em; border-left: 1px solid #000000;border-right: 1px solid #000000;border-top-right-radius: 0.5em;">
+                    Login &nbsp; Enterprise
+                </div>
+            </div><br><br>
+
+            <div class="row-fluid" style="margin-left: 3%;">
+                <div class="span2 offset3">
+                    <div class="control-group" style="display: inline-block;">
+                        <label class="control-label">User</label>
+                    </div>
+                    <div class="control-group"style="display: inline-block; margin-left: 10px;">
+                        <input class="input-medium" type="text" name="usernameP">
+                    </div><br>
+                    <div class="control-group" style="display: inline-block;">
+                    <label class="control-label">Pass</label>
+                    </div>
+                    <div class="control-group"style="display: inline-block; margin-left: 10px;">
+                        <input class="input-medium" name="passwordP" type="password">
+                    </div>
+                </div>
+                <div class="span4 offset1">
+                    <div class="control-group" style="display: inline-block;">
+                        <label class="control-label">User</label>
+                    </div>
+                    <div class="control-group"style="display: inline-block; margin-left: 10px;">
+                        <input class="input-medium" type="text" name="usernameR">
+                    </div><br>
+                    <div class="control-group" style="display: inline-block;">
+                        <label class="control-label">Pass</label>
+                    </div>
+                    <div class="control-group"style="display: inline-block; margin-left: 10px;">
+                        <input class="input-medium" type="password" name="passwordR">
+                    </div>
+                 </div>
+             </div><br>
+        </div>
+        <div class="row-fluid" style="margin-left: 3%;">
+            <div class="span7 offset3">
+                <div class="span1 offset1">
+                    <a href="signup/" class="btn btn-inverse">Signup</a>
+                </div>
+                <div class="span1">
+                    <button type="submit" value="loginP" name="login" class="btn btn-inverse">Log in</button>
+                </div>
+                <div class="span1 offset5">
+                    <a href="" class="btn btn-inverse">Signup</a>
+                </div>
+                <div class="span1">
+                    <button type="submit" value="loginR" name="login" class="btn btn-inverse">Log in</button>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+    <div class="span7 offset9"> {{ result }}</div>
+    </form>
+{% endblock contenido %}

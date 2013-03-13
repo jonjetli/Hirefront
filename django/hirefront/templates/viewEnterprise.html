@@ -1,0 +1,70 @@
+{% extends 'base2.html' %}
+{% block head_views %}
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+{% endblock head_views %}
+
+{% block contenido %}
+<form method="POST">{% csrf_token %}
+    <br><br>
+        <h3>Ingreso de Entrevistados</h3>
+    <br>
+    <div>
+        <div class="input-prepend">
+            <input class="input-medium" type="email" name="email">
+            <span class="add-on">
+                <i class="icon-envelope"></i>
+            </span>
+        </div>
+        <div id="fecha" class="input-prepend">
+            <input class="input-medium" data-format="dd-MM-yyyy" type="text" name="fecha">
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+        </div>
+        <div id="hora" class="input-prepend">
+            <input  class="input-mini" data-format="hh:mm" type="text" name="hora">
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+        </div>
+        <div class="input-prepend">
+            <input type="text" class="input-large" placeholder="OBSERVACIONES...." name="obs">
+        </div>
+        <br><br>
+        <div>
+        <button class="btn-danger btn" type="submit">Add Interviewed</button>
+        </div>
+    </div>
+</form>
+{% endblock contenido %}
+
+{% block contenido2 %}
+    <br><br><br>
+    <div class="container">
+        <div class="span11" style="border-bottom: 1px solid #808080">
+        </div>
+        <div class="container">
+            <h4>{{ estado }}</h4>
+        </div>
+    </div>
+
+{% endblock contenido2 %}
+{% block scripts %}
+    <script type="text/javascript"
+            src="/static/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $('#fecha').datetimepicker({
+                pickTime: false
+            });
+            $('#hora').datetimepicker({
+                pickDate: false,
+                pickSeconds: false
+            });
+        });
+    </script>
+{% endblock scripts %}
