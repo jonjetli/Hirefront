@@ -1,0 +1,129 @@
+{% extends 'base2.html' %}
+{% block head_views %}
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+{% endblock head_views %}
+{% block sessions %}
+    <button class="btn btn-inverse"><i class="icon-user icon-white"> </i> Close Session</button>
+{% endblock sessions %}
+{% block contenido %}
+{% if user == 'Enterprise' %}
+<form method="POST">{% csrf_token %}
+    <br><br>
+        <h3>Ingreso de Entrevistados</h3>
+    <br>
+    <div>
+        <div class="input-prepend">
+            <input class="input-medium" type="email" name="email">
+            <span class="add-on">
+                <i class="icon-envelope"></i>
+            </span>
+        </div>
+        <div id="fecha" class="input-prepend">
+            <input class="input-medium" data-format="dd-MM-yyyy" type="text" name="fecha">
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+        </div>
+        <div id="hora" class="input-prepend">
+            <input  class="input-mini" data-format="hh:mm" type="text" name="hora">
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+        </div>
+        <div class="input-prepend">
+            <input type="text" class="input-large" placeholder="OBSERVACIONES...." name="obs">
+        </div>
+        <br><br>
+        <div>
+        <button class="btn-danger btn" type="submit">Add Interviewed</button>
+        </div>
+    </div>
+</form>
+{% endif %}
+{% endblock contenido %}
+
+{% block contenido2 %}
+    <br><br><br>
+    <div class="container">
+        <h4>{{ estado }}</h4>
+        <div class="container">
+        <table class="table table-hover table-bordered" id="table_interviewed">
+            <thead>
+                <tr>
+                    {% if user == 'Enterprise' %}
+                        <td></td>
+                        <td style="text-align: center;">Email</td>
+                        <td style="text-align: center;">Link unique</td>
+                        <td style="text-align: center;">Date</td>
+                        <td style="text-align: center;">Time</td>
+                        <td style="text-align: center;">Observations</td>
+                        <td style="text-align: center;">Status</td>
+                    {% else %}
+                        <td style="text-align: center;">Link unique</td>
+                        <td style="text-align: center;">Date</td>
+                        <td style="text-align: center;">Time</td>
+                        <td style="text-align: center;">Status</td>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for entrevista in Entrevistas %}
+                <tr>
+                    {% if user == 'Enterprise' %}
+                    <td><span class="badge badge-inverse">{{ entrevista.id }}</span></td>
+                    <td style="text-align: center;">{{ entrevista.email_interviewed }}</td>
+                    <td style="text-align: center;"><a href="/"style="color: #da4f49;">http://www.hirefront.com/joinInterview/{{ entrevista.code_unique_interview }}</a></td>
+                    <td style="text-align: center;">{{ entrevista.date_interview }}</td>
+                    <td style="text-align: center;">{{ entrevista.time_interview }}</td>
+                    <td style="text-align: center;">{{ entrevista.observations }}</td>
+                    <td style="text-align: center;">
+                    {% if entrevista.status == 'Off Air' %}
+                        <button class="btn btn-inverse" onclick="window.open('http://127.0.0.1/joinInterview/{{ entrevista.code_unique_interview }}')">Start</button>
+                    {% else %}
+                        <div class="btn btn-info">
+                           On Air
+                        </div>
+                    {% endif %}
+                    </td>
+                    <td><a class="close">x</a></td>
+{#                    <button class="btn btn-danger">X</button>#}
+                    {% else %}
+                        <td style="text-align: center;"><a href="/"style="color: #da4f49;">http://www.hirefront.com/joinInterview/{{ entrevista.code_unique_interview }}</a></td>
+                        <td style="text-align: center;">{{ entrevista.date_interview }}</td>
+                        <td style="text-align: center;">{{ entrevista.time_interview }}</td>
+                        <td style="text-align: center;"></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <div class="span7 offset6 text-center">
+        {% if user == 'Interviewed' %}
+            <a href="/{{ Interviewed.email }}/Perfil_Interviewed" class="btn btn-inverse">Back</a>
+        {% else %}
+            <a href="/{{ Enterprise.email }}/Perfil_Enterprise" class="btn btn-inverse">Back</a>
+        {% endif %}
+    </div>
+{% endblock contenido2 %}
+
+{% block scripts %}
+    <script type="text/javascript"
+            src="/static/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $('#fecha').datetimepicker({
+                pickTime: false
+            });
+            $('#hora').datetimepicker({
+                pickDate: false,
+                pickSeconds: false
+            });
+        });
+    </script>
+{% endblock scripts %}

@@ -1,5 +1,87 @@
 {% extends 'base2.html' %}
-
+{% block sessions %}
+    <button class="btn btn-inverse"><i class="icon-user icon-white"> </i> Close Session</button>
+{% endblock sessions %}
 {% block contenido %}
+    <div class="span12 offset1"><br><br><br>
+           <h4>Bienvenido:<em class="muted"> {{ postulante.Fullname }}</em> </h4>
+    </div>
 
 {% endblock contenido %}
+
+{% block contenido2 %}
+<br><br><br><br>
+
+    <div class="span9 offset6 pull-left" style="margin-top: 4%;">
+        <a href="#modal" role="button" class="btn btn-inverse" data-toggle="modal">Perfil</a>
+        <div class="pull-right">
+            <a href="/{{ postulante.email }}/Perfil/calendario" class="btn btn-inverse"> Calendar Interviews</a>
+        </div>
+    </div>
+    {% if postulante.city == '' or postulante.country == '' or postulante.cv == '' or postulante.number == '' %}
+        <div class="span9 offset5 text-error"> <br>Please Complete your Perfil</div>
+    {% else %}
+        <div class="span9 offset5 text-error"> <br>Perfil Complete</div>
+    {% endif %}
+
+    <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" ria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Interviewed Perfil</h3>
+        </div>
+        <div class="modal-body">
+            <p>Complete the field empty</p><br>
+            <div id="containerJoin" class="container">
+                <div class="span10 offset1" >
+                    <div style="float: left;">
+                        <label class="control-label"> Full Name </label>
+                    </div>
+                    <div style="float: left; padding-left: 1%;">
+                        <input class="input-large" name="fullname" type="text" placeholder="{{ postulante.Fullname }} Name">
+                    </div>
+                </div>
+
+                <br><br><br>
+                <div class="span10" style="margin-left: 15.7%;">
+                    <div style="float: left;>
+                <label class="control-label"> ID </label>
+                </div>
+                <div style="float: left; padding-left: 1%;">
+                    <input name="ID" class="input-large" type="text" placeholder="{{ postulante.id }}">
+                </div>
+                <div class="span6">
+                    <div style="float: left; margin-left: 15%">
+                        <label> Cellphone</label>
+                    </div>
+                    <div style="float: left; padding-left: 1%;">
+                        <input name="cellphone" class="input-large" type="tel" placeholder="{{ postulante.number }}">
+                    </div>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="span10" style="margin-left: 11.8%;">
+                <div style="float: left;">
+                <label class="control-label"> Country </label>
+            </div>
+            <div style="float: left; padding-left: 1%;">
+                <input name="country" class="input-large" type="text" placeholder="{{ postulante.country }}">
+            </div>
+            <div class="span6">
+                <div style="float: left; margin-left: 23.1%">
+                    <label> City </label>
+                </div>
+                <div style="float: left; padding-left: 1%;">
+                    <input name="city" class="input-large" type="text" placeholder="{{ postulante.city }}">
+                </div>
+            </div>
+        </div>
+
+    </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-inverse">Save changes</button>
+        </div>
+    </div>
+
+{% endblock contenido2 %}
